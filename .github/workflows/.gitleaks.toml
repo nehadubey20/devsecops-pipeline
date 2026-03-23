@@ -1,0 +1,3 @@
+[allowlist]
+  description = "Ignore false positives in README"
+  paths = ['''README.md''']
