@@ -1,5 +1,14 @@
-gitleaks:
-    name: Secret Scan — GitLeaks
+name: DevSecOps Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  gitleaks:
+    name: Secret Scan - GitLeaks
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
