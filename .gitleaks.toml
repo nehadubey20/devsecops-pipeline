@@ -1,3 +1,20 @@
+title = "DevSecOps Pipeline GitLeaks Config"
+
 [allowlist]
-  description = "Ignore false positives in README"
-  paths = ['''README.md''']
+  description = "Ignore false positives"
+  regexTarget = "match"
+  paths = [
+    '''README\.md'''
+  ]
+
+[[rules]]
+  id = "aws-access-token"
+  description = "AWS Access Token"
+  regex = '''AKIA[0-9A-Z]{16}'''
+  tags = ["aws", "credentials"]
+
+[[rules]]
+  id = "generic-password"
+  description = "Generic hardcoded password"
+  regex = '''(?i)password\s*=\s*["'][^"']{8,}["']'''
+  tags = ["password"]
