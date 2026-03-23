@@ -23,4 +23,20 @@ jobs:
           sudo mv gitleaks /usr/local/bin/
 
       - name: Run GitLeaks
-        run: gitleaks detect --source . --no-git --verbose --redact
+        run: gitleaks detect --source . --no-git --verbose --redact --config .gitleaks.toml
+
+  sonarqube:
+    name: SAST - SonarQube
+    runs-on: ubuntu-latest
+    needs: gitleaks
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
