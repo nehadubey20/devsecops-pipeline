@@ -31,7 +31,7 @@ jobs:
     needs: gitleaks
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Install Bandit
         run: pip install bandit
@@ -40,7 +40,7 @@ jobs:
         run: bandit -r app/ -f json -o bandit-report.json || true
 
       - name: Upload Bandit report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: bandit-report
           path: bandit-report.json
