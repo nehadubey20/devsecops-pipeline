@@ -4,8 +4,8 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 # hardcoded secret — GitLeaks will catch this
-AWS_SECRET_KEY = "AKIAIOSFODNN7EXAMPLE+wJalrXUtnFEMI/K7MDENG"
-DB_PASSWORD = "supersecret123"
+# AWS_SECRET_KEY = "AKIAIOSFODNN7EXAMPLE+wJalrXUtnFEMI/K7MDENG"
+# DB_PASSWORD = "supersecret123"
 
 @app.route('/users')
 def get_users():
