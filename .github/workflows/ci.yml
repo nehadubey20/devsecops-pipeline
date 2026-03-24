@@ -92,3 +92,25 @@ jobs:
           format: table
           exit-code: 1
           severity: HIGH,CRITICAL        
+
+  terraform-scan:
+    name: Terraform Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install tfsec
+        run: |
+          wget https://github.com/aquasecurity/tfsec/releases/download/v1.28.1/tfsec-linux-amd64
+          chmod +x tfsec-linux-amd64
+          sudo mv tfsec-linux-amd64 /usr/local/bin/tfsec
+
+      - name: Run tfsec
+        run: tfsec ~/docker-practice/terraform-security --no-color
+
+      - name: Install Checkov
+        run: pip install checkov
+
+      - name: Run Checkov
+        run: checkov -d ~/docker-practice/terraform-security --quiet          
