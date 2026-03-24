@@ -107,10 +107,10 @@ jobs:
           sudo mv tfsec-linux-amd64 /usr/local/bin/tfsec
 
       - name: Run tfsec
-        run: tfsec ~/docker-practice/terraform-security --no-color
+        run: tfsec ~/docker-practice/devsecops_pipeline --no-color
 
       - name: Install Checkov
         run: pip install checkov
 
       - name: Run Checkov
-        run: checkov -d ~/docker-practice/terraform-security --quiet          
+        run: checkov -d ~/docker-practice/devsecops_pipeline --quiet          
